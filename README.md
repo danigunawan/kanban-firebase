@@ -1,7 +1,8 @@
-# y
+# Kanband Firebase
 
-> y
+Build with vuejs and firebase 
 
+[Demo Link](https://fir-notification-37d85.firebaseapp.com/#/)
 ## Build Setup
 
 ``` bash
