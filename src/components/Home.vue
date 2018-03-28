@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <spinner v-if="!lists.length" message="Loading List.."></spinner>
     <div class="row">
       <div class="col-md-4 board-list" v-for="(list, indexList) in lists" :key="list['.key']" >
         <div class="card" >

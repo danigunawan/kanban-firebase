@@ -4,9 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueFire from 'vuefire'
+import Spinner from 'vue-simple-spinner'
 
 // explicit installation required in module environments
 Vue.use(VueFire)
+Vue.component('spinner', Spinner)
 
 Vue.config.productionTip = false
 
