@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <spinner v-if="!lists.length" message="Loading List.."></spinner>
     <div class="row">
       <div class="col-md-4 board-list" v-for="(list, indexList) in lists" :key="list['.key']" >
         <div class="card" >
@@ -19,8 +18,8 @@
             <li class="list-group-item">
               <form  >
                 <label class="sr-only" for="inlineFormInputName2">Name</label>
-                <input type="text" v-model="newTask.title" class="form-control  " id="inlineFormInputName2" placeholder="Add A Task">
-                <button type="submit" @click="saveTask(list['.key'])" class="btn btn-primary " style="margin-top: 12px">Save</button>
+                <input type="text" v-model="list.newTask" class="form-control  " id="inlineFormInputName2" placeholder="Add A Task">
+                <button type="submit" @click="saveTask(list['.key'], list.newTask, indexList)" class="btn btn-primary " style="margin-top: 12px">Save</button>
               </form>
             </li>
           </ul>
@@ -57,7 +56,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      newList: { title: '' },
+      newList: { title: '', newTask: '' },
       newTask: { title: '', list_id: '' },
       formTask: {}
     }
@@ -68,13 +67,23 @@ export default {
   },
   methods: {
     saveList () {
-      listsRef.push(this.newList)
-      this.newList.title = ''
+      if (this.newList.title === '') {
+        this.$swal('New List Field is required to fill')
+      } else {
+        listsRef.push(this.newList)
+        this.newList.title = ''
+      }
     },
-    saveTask (key) {
-      this.newTask.list_id = key
-      tasksRef.push(this.newTask)
-      this.newTask.title = ''
+    saveTask (key, title, index) {
+      if (title === '') {
+        this.$swal('New Task Field is required to fill')
+      } else {
+        this.newTask.list_id = key
+        this.newTask.title = title
+        tasksRef.push(this.newTask)
+        this.newTask.title = ''
+        this.lists[index].newTask = ''
+      }
     },
     deleteList (key) {
       listsRef.child(key).remove()

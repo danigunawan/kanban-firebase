@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import VueFire from 'vuefire'
 import Spinner from 'vue-simple-spinner'
+import VueSweetAlert from 'vue-sweetalert'
+
+Vue.use(VueSweetAlert)
 
 // explicit installation required in module environments
 Vue.use(VueFire)
