@@ -8,12 +8,16 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item" v-for="(task, taskIndex) in tasks" :key="task['.key']" v-if="task.list_id == list['.key']">
+              <div >
                {{ task.title }}
+              </div>
+              <div >
                <button @click="deleteTask(task['.key'])" class="btn btn-danger btn-sm float-right"><i class="fas fa-trash"></i></button>
                <button @click="moveTask(taskIndex, indexList + 1)" v-if="indexList < lists.length - 1" class="btn btn-primary btn-sm float-right"><i class="fas fa-arrow-right"></i></button>
                <button v-else="" class="btn btn-primary btn-sm float-right" disabled><i class="fas fa-arrow-right"></i></button>
                <button @click="moveTask(taskIndex, indexList - 1)" v-if="indexList >= 1" class="btn btn-primary btn-sm float-right"><i class="fas fa-arrow-left"></i></button>
                <button  v-else="" class="btn btn-primary btn-sm float-right" disabled><i class="fas fa-arrow-left"></i></button>
+              </div>
             </li>
             <li class="list-group-item">
               <form  >
